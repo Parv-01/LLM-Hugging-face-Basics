@@ -1,0 +1,2071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI/ML/LLM Mastery Roadmap — Professor's Edition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=JetBrains+Mono:wght@300;400;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap');
+
+        :root {
+            --ink: #0e0e0e;
+            --paper: #f5f0e8;
+            --accent: #c0392b;
+            --gold: #b8860b;
+            --muted: #6b6459;
+            --rule: #d4c9b0;
+            --code-bg: #1a1a2e;
+            --code-fg: #e0d7c6;
+            --phase0: #1a472a;
+            --phase1: #1a3a5c;
+            --phase2: #4a1a4a;
+            --phase3: #5c3a1a;
+            --phase4: #1a4a4a;
+            --phase5: #4a1a1a;
+            --phase6: #2a2a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 80px 40px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(255,255,255,0.015) 40px,
+                    rgba(255,255,255,0.015) 41px
+            );
+        }
+        .hero-inner { max-width: 900px; margin: 0 auto; position: relative; }
+        .hero-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 24px;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero-sub {
+            font-size: 18px;
+            color: #b0a898;
+            max-width: 680px;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+        }
+        .stat-lbl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #6b6459;
+            text-transform: uppercase;
+        }
+
+        /* ── NAV ── */
+        .toc {
+            background: var(--ink);
+            border-top: 1px solid #2a2a2a;
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .toc-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .toc a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: #888;
+            text-decoration: none;
+            padding: 4px 10px;
+            border: 1px solid #333;
+            border-radius: 2px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+        .toc a:hover { color: var(--paper); border-color: var(--accent); background: var(--accent); }
+
+        /* ── LAYOUT ── */
+        .content { max-width: 900px; margin: 0 auto; padding: 0 40px 80px; }
+
+        /* ── SECTION HEADERS ── */
+        .section-header {
+            margin: 70px 0 0;
+            padding-top: 70px;
+            border-top: 1px solid var(--rule);
+        }
+        .section-header:first-child { border-top: none; }
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        .section-header p {
+            color: var(--muted);
+            font-style: italic;
+            font-size: 17px;
+            max-width: 680px;
+            margin-bottom: 40px;
+        }
+
+        /* ── PHASE CARDS ── */
+        .phase-card {
+            border-left: 4px solid;
+            padding: 28px 32px;
+            margin: 28px 0;
+            position: relative;
+        }
+        .phase-card.p0 { border-color: var(--phase0); background: rgba(26,71,42,0.04); }
+        .phase-card.p1 { border-color: var(--phase1); background: rgba(26,58,92,0.04); }
+        .phase-card.p2 { border-color: var(--phase2); background: rgba(74,26,74,0.04); }
+        .phase-card.p3 { border-color: var(--phase3); background: rgba(92,58,26,0.04); }
+        .phase-card.p4 { border-color: var(--phase4); background: rgba(26,74,74,0.04); }
+        .phase-card.p5 { border-color: var(--phase5); background: rgba(74,26,26,0.04); }
+        .phase-card.p6 { border-color: var(--phase6); background: rgba(42,42,26,0.04); }
+
+        .phase-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 2px;
+            display: inline-block;
+            margin-bottom: 12px;
+            color: white;
+        }
+        .p0 .phase-badge { background: var(--phase0); }
+        .p1 .phase-badge { background: var(--phase1); }
+        .p2 .phase-badge { background: var(--phase2); }
+        .p3 .phase-badge { background: var(--phase3); }
+        .p4 .phase-badge { background: var(--phase4); }
+        .p5 .phase-badge { background: var(--phase5); }
+        .p6 .phase-badge { background: var(--phase6); }
+
+        .phase-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .phase-card .duration {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        /* ── MATH BLOCKS ── */
+        .math-block {
+            background: var(--code-bg);
+            color: var(--code-fg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13.5px;
+            padding: 28px 32px;
+            margin: 24px 0;
+            border-radius: 2px;
+            overflow-x: auto;
+            line-height: 2;
+            position: relative;
+        }
+        .math-block::before {
+            content: attr(data-label);
+            position: absolute;
+            top: 10px;
+            right: 16px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #555;
+            text-transform: uppercase;
+        }
+        .math-block .comment { color: #5a8a5a; }
+        .math-block .highlight { color: #e8a87c; }
+        .math-block .formula { color: #80cbc4; }
+        .math-block .greek { color: #ce93d8; }
+
+        /* ── TOPIC GRID ── */
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .topic-item {
+            border: 1px solid var(--rule);
+            padding: 18px 20px;
+            position: relative;
+        }
+        .topic-item h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .topic-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+        /* ── RESOURCE CARDS ── */
+        .resource-section { margin: 32px 0; }
+        .resource-section h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--rule);
+        }
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+        .resource-card {
+            border: 1px solid var(--rule);
+            padding: 16px 18px;
+            transition: border-color 0.2s;
+        }
+        .resource-card:hover { border-color: var(--accent); }
+        .resource-type {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .resource-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+        .resource-by { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 6px; }
+        .resource-note { font-size: 13px; color: #555; line-height: 1.5; }
+        .resource-must {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1px;
+            padding: 2px 7px;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+
+        /* ── CALLOUT ── */
+        .callout {
+            border: 1px solid var(--gold);
+            background: rgba(184,134,11,0.06);
+            padding: 20px 24px;
+            margin: 28px 0;
+            font-size: 15px;
+        }
+        .callout strong {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 8px;
+        }
+        .callout.danger { border-color: var(--accent); background: rgba(192,57,43,0.04); }
+        .callout.danger strong { color: var(--accent); }
+
+        /* ── STEPS ── */
+        ol.steps { counter-reset: step; list-style: none; margin: 20px 0; }
+        ol.steps li {
+            counter-increment: step;
+            padding: 12px 0 12px 52px;
+            position: relative;
+            border-bottom: 1px solid var(--rule);
+            font-size: 15px;
+        }
+        ol.steps li::before {
+            content: counter(step, decimal-leading-zero);
+            position: absolute;
+            left: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            top: 15px;
+            font-weight: 600;
+        }
+        ol.steps li strong { display: block; font-size: 15px; margin-bottom: 3px; }
+        ol.steps li span { color: var(--muted); font-size: 14px; }
+
+        /* ── TIMELINE ── */
+        .timeline { margin: 32px 0; }
+        .tl-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 24px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--rule);
+            align-items: start;
+        }
+        .tl-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            padding-top: 4px;
+            font-weight: 600;
+        }
+        .tl-body h4 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 6px; }
+        .tl-body p { font-size: 14px; color: var(--muted); }
+
+        /* ── PAPER CARDS ── */
+        .paper-list { margin: 16px 0; }
+        .paper-item {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--rule);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            align-items: start;
+        }
+        .paper-title { font-weight: 600; font-size: 15px; margin-bottom: 3px; }
+        .paper-meta { font-size: 13px; color: var(--muted); font-style: italic; }
+        .paper-why { font-size: 13px; color: #555; margin-top: 4px; }
+        .paper-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1px;
+            padding: 3px 8px;
+            border: 1px solid;
+            white-space: nowrap;
+            align-self: start;
+            text-transform: uppercase;
+        }
+        .tag-essential { border-color: var(--accent); color: var(--accent); }
+        .tag-important { border-color: var(--gold); color: var(--gold); }
+        .tag-advanced { border-color: var(--phase2); color: var(--phase2); }
+
+        /* ── DIVIDERS ── */
+        .ornament {
+            text-align: center;
+            color: var(--rule);
+            font-size: 20px;
+            margin: 50px 0;
+            letter-spacing: 12px;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--ink);
+            color: #555;
+            padding: 40px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-top: 80px;
+        }
+        .footer span { color: var(--accent); }
+
+        /* ── UTILITY ── */
+        ul.plain { list-style: none; }
+        ul.plain li { padding: 5px 0; font-size: 15px; }
+        ul.plain li::before { content: "→ "; color: var(--accent); font-family: monospace; }
+        strong.accent { color: var(--accent); }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #e8e0d0;
+            padding: 1px 6px;
+            font-size: 13px;
+            border-radius: 2px;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 20px 0;
+        }
+        @media (max-width: 640px) {
+            .two-col { grid-template-columns: 1fr; }
+            .toc { display: none; }
+            .hero { padding: 50px 20px 40px; }
+            .content { padding: 0 20px 60px; }
+            .tl-item { grid-template-columns: 1fr; }
+            .paper-item { grid-template-columns: 1fr; }
+        }
+
+        h3.sub {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin: 32px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--rule);
+        }
+        p.body { font-size: 15.5px; margin: 12px 0; line-height: 1.85; }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════ HERO -->
+<header class="hero">
+    <div class="hero-inner">
+        <p class="hero-label">Professor's Edition · Complete Researcher Roadmap · 2024–2026</p>
+        <h1>Your Path from <span>Zero</span><br/>to AI Researcher</h1>
+        <p class="hero-sub">A mathematically rigorous, phase-by-phase roadmap through Machine Learning, Deep Learning, NLP, Transformers, and Large Language Models — built for someone who knows Python and wants to go all the way.</p>
+        <div class="hero-stats">
+            <div class="stat"><span class="stat-num">7</span><span class="stat-lbl">Phases</span></div>
+            <div class="stat"><span class="stat-num">18–24</span><span class="stat-lbl">Months</span></div>
+            <div class="stat"><span class="stat-num">40+</span><span class="stat-lbl">Resources</span></div>
+            <div class="stat"><span class="stat-num">30+</span><span class="stat-lbl">Must-Read Papers</span></div>
+            <div class="stat"><span class="stat-num">∞</span><span class="stat-lbl">Depth</span></div>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════ NAV -->
+<nav class="toc">
+    <div class="toc-inner">
+        <a href="#start">Your Start</a>
+        <a href="#phase0">Phase 0: Math</a>
+        <a href="#phase1">Phase 1: ML Theory</a>
+        <a href="#phase2">Phase 2: Deep Learning</a>
+        <a href="#phase3">Phase 3: NLP</a>
+        <a href="#phase4">Phase 4: Transformers</a>
+        <a href="#phase5">Phase 5: LLMs</a>
+        <a href="#phase6">Phase 6: Research</a>
+        <a href="#books">Books</a>
+        <a href="#papers">Papers</a>
+        <a href="#projects">Projects</a>
+        <a href="#final">Final Word</a>
+    </div>
+</nav>
+
+<div class="content">
+
+    <!-- ══════════════════════════════════════════════════════════ WHERE YOU ARE -->
+    <section id="start" class="section-header">
+        <span class="section-tag">§ 0 — Honest Assessment</span>
+        <h2>Where You Stand Today</h2>
+        <p>Before we build the map, let us understand the territory — you.</p>
+    </section>
+
+    <div class="callout">
+        <strong>Your current profile</strong>
+        You know Python. You have seen how a simple LLM works from the outside — maybe called an API, maybe used ChatGPT. You are curious, motivated, and want to go very deep. That is an excellent starting point. What you do NOT yet have is the mathematical language that makes AI truly understandable. That is what we build first.
+    </div>
+
+    <div class="two-col">
+        <div>
+            <h3 class="sub">What You Have ✓</h3>
+            <ul class="plain">
+                <li>Python basics (loops, functions, classes)</li>
+                <li>High-level intuition of LLMs</li>
+                <li>Motivation to go research-level deep</li>
+                <li>Clean starting point — no bad habits yet</li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="sub">What You Need ✗</h3>
+            <ul class="plain">
+                <li>Linear algebra at research depth</li>
+                <li>Probability & statistics (Bayesian thinking)</li>
+                <li>Calculus: gradients, Jacobians, chain rule</li>
+                <li>Optimization theory</li>
+                <li>Neural network internals</li>
+                <li>Transformer architecture from scratch</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="callout danger">
+        <strong>The biggest mistake most beginners make</strong>
+        Skipping straight to PyTorch tutorials and fine-tuning LLMs. You will build a career on sand. The researchers who change the field understand <em>why</em> things work — not just <em>how</em> to call an API. We go slow on math. We go fast later. Trust the process.
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ PHASE 0 -->
+    <section id="phase0" class="section-header">
+        <span class="section-tag">§ 1 — Foundation</span>
+        <h2>Phase 0: Mathematical Foundations</h2>
+        <p>This is the hardest phase to stay motivated through, and the most important phase of all. Every single AI concept you will ever learn is written in this language.</p>
+    </section>
+
+    <div class="phase-card p0">
+        <span class="phase-badge">Phase 0</span>
+        <h3>Mathematics for Machine Learning</h3>
+        <p class="duration">⏱ Duration: 2–4 months · Daily: 2–3 hours</p>
+        <p>You do not need a PhD in mathematics. You need deep working knowledge of four areas: Linear Algebra, Calculus, Probability, and Optimization. Everything else is notation on top of these.</p>
+    </div>
+
+    <!-- LINEAR ALGEBRA -->
+    <h3 class="sub">0.1 — Linear Algebra</h3>
+
+    <p class="body">Everything in machine learning is a matrix operation. Images are matrices of pixel values. Text is vectors of numbers. Neural networks are stacked matrix multiplications. If you do not understand linear algebra deeply, you will be confused about every model you ever use.</p>
+
+    <div class="math-block" data-label="Linear Algebra">
+        <span class="comment">// Core objects you must master:</span>
+
+        <span class="highlight">Vector:</span>      <span class="formula">v ∈ ℝⁿ</span>  — a column of n real numbers
+        <span class="highlight">Matrix:</span>     <span class="formula">A ∈ ℝᵐˣⁿ</span> — m rows, n columns
+        <span class="highlight">Matrix Mul:</span> <span class="formula">(AB)ᵢⱼ = Σₖ Aᵢₖ · Bₖⱼ</span>
+
+        <span class="comment">// The two most important decompositions in ML:</span>
+
+        <span class="highlight">Eigendecomposition:</span>
+        <span class="formula">A · v = λ · v</span>
+        where v = eigenvector, λ = eigenvalue
+        Intuition: v is a direction A only SCALES, not rotates.
+
+        <span class="highlight">SVD (Singular Value Decomposition):</span>
+        <span class="formula">A = U · Σ · Vᵀ</span>
+        U = left singular vectors  (ℝᵐˣᵐ, orthogonal)
+        Σ = diagonal singular values (ℝᵐˣⁿ)
+        Vᵀ = right singular vectors (ℝⁿˣⁿ, orthogonal)
+
+        WHY IT MATTERS:
+        → PCA (dimensionality reduction) IS just SVD
+        → Word embeddings reduce via SVD
+        → Attention weights have low-rank structure
+
+        <span class="highlight">Dot Product &amp; Cosine Similarity:</span>
+        <span class="formula">a · b = |a| · |b| · cos(θ)</span>
+        <span class="formula">similarity(a,b) = (a · b) / (|a| · |b|)</span>
+        → This is literally how attention scores are computed!
+    </div>
+
+    <div class="topic-grid">
+        <div class="topic-item">
+            <h4>Vector Spaces</h4>
+            <p>What makes a valid vector space. Span, basis, linear independence. You must be able to prove these formally.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Matrix Operations</h4>
+            <p>Transpose, inverse, rank, determinant, trace. Know when a matrix is invertible and why it matters.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Norms</h4>
+            <p>L1 norm (||x||₁ = Σ|xᵢ|), L2 norm (||x||₂ = √Σxᵢ²). These become regularization terms in ML.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Eigenvalues/Eigenvectors</h4>
+            <p>Solve Av = λv. Understand the characteristic polynomial. Connect to PCA and covariance matrices.</p>
+        </div>
+        <div class="topic-item">
+            <h4>SVD Decomposition</h4>
+            <p>The most important matrix factorization in all of ML. Drives dimensionality reduction and latent semantic analysis.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Projections</h4>
+            <p>Projection of v onto subspace W. This is the geometric foundation of attention and regression both.</p>
+        </div>
+    </div>
+
+    <!-- CALCULUS -->
+    <h3 class="sub">0.2 — Calculus & Gradients</h3>
+
+    <p class="body">Neural networks learn by computing how much each weight contributed to the error, and nudging it in the right direction. This "how much" is the gradient. Calculus is the engine of learning.</p>
+
+    <div class="math-block" data-label="Calculus">
+        <span class="comment">// The derivative: rate of change</span>
+        <span class="formula">df/dx = lim[h→0] (f(x+h) - f(x)) / h</span>
+
+        <span class="comment">// Partial derivative: change w.r.t. ONE variable</span>
+        <span class="formula">∂f/∂xᵢ  (hold all other variables constant)</span>
+
+        <span class="comment">// Gradient: ALL partial derivatives stacked as a vector</span>
+        <span class="formula">∇f(x) = [∂f/∂x₁, ∂f/∂x₂, ..., ∂f/∂xₙ]ᵀ</span>
+        Intuition: gradient points in direction of STEEPEST ASCENT
+
+        <span class="comment">// Chain Rule — THE most important rule in deep learning</span>
+        If y = f(g(x)), then:
+        <span class="formula">dy/dx = (dy/dg) · (dg/dx)</span>
+
+        Example: Loss = CrossEntropy(Softmax(W·x + b))
+        <span class="formula">∂Loss/∂W = ∂Loss/∂softmax · ∂softmax/∂(Wx+b) · ∂(Wx+b)/∂W</span>
+        → Backpropagation is JUST repeated chain rule!
+
+        <span class="comment">// Jacobian: matrix of all partial derivatives (vector → vector)</span>
+        <span class="formula">J[i,j] = ∂fᵢ/∂xⱼ</span>   (needed for batch ops in NN layers)
+
+        <span class="comment">// Hessian: second-order derivatives (curvature of loss surface)</span>
+        <span class="formula">H[i,j] = ∂²f / (∂xᵢ ∂xⱼ)</span>
+        → Used in second-order optimizers (Newton's method, K-FAC)
+    </div>
+
+    <!-- PROBABILITY -->
+    <h3 class="sub">0.3 — Probability & Statistics</h3>
+
+    <p class="body">Language models are probability distributions over text. Every "token prediction" is a categorical probability. You cannot deeply understand LLMs without being fluent in probability theory.</p>
+
+    <div class="math-block" data-label="Probability">
+        <span class="comment">// Basic Rules</span>
+        <span class="formula">P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</span>
+        <span class="formula">P(A | B) = P(A ∩ B) / P(B)</span>
+
+        <span class="comment">// Bayes' Theorem — the foundation of probabilistic ML</span>
+        <span class="formula">P(θ | data) = P(data | θ) · P(θ) / P(data)</span>
+
+        Posterior = Likelihood × Prior / Evidence
+
+        ML Translation:
+        <span class="highlight">θ</span>    = model parameters
+        <span class="highlight">P(θ)</span> = prior belief about parameters
+        <span class="highlight">P(data|θ)</span> = likelihood: how well θ explains data
+        <span class="highlight">P(θ|data)</span> = posterior: updated belief after seeing data
+
+        <span class="comment">// Maximum Likelihood Estimation (MLE) — how models train</span>
+        <span class="formula">θ* = argmax_θ  Σᵢ log P(xᵢ | θ)</span>
+        → Training a neural network = maximizing log-likelihood
+        → Cross-entropy loss = negative log-likelihood!
+
+        <span class="comment">// Key Distributions you must know:</span>
+        Bernoulli:   <span class="formula">P(X=1) = p,  P(X=0) = 1-p</span>      (binary classification)
+        Categorical: <span class="formula">P(X=k) = pₖ</span>                        (next-token prediction!)
+        Gaussian:    <span class="formula">P(x) = (1/√2πσ²) exp(-(x-μ)²/2σ²)</span> (weight initialization)
+        KL Divergence: <span class="formula">D_KL(P||Q) = Σ P(x) log(P(x)/Q(x))</span> (used in RLHF, VAEs)
+
+        <span class="comment">// Entropy — measures uncertainty</span>
+        <span class="formula">H(P) = -Σ P(x) log P(x)</span>
+        → A model with HIGH perplexity = HIGH entropy = very uncertain
+        → Cross-entropy loss = H(P_true, P_model) = -Σ y log ŷ
+    </div>
+
+    <!-- OPTIMIZATION -->
+    <h3 class="sub">0.4 — Optimization Theory</h3>
+
+    <p class="body">Training any model is an optimization problem: minimize the loss function over the parameter space. Understanding what makes optimization hard — and how algorithms overcome it — is essential for research.</p>
+
+    <div class="math-block" data-label="Optimization">
+        <span class="comment">// Gradient Descent: the core update rule</span>
+        <span class="formula">θ ← θ - η · ∇_θ L(θ)</span>
+        where η = learning rate, L = loss, θ = parameters
+
+        <span class="comment">// Variants:</span>
+        SGD (Stochastic):  <span class="formula">θ ← θ - η · ∇L(xᵢ)</span>       (one sample)
+        Mini-batch SGD:    <span class="formula">θ ← θ - η · ∇L(x_{1..B})</span>  (B samples)
+
+        <span class="comment">// Momentum — escape flat regions</span>
+        <span class="formula">v ← β·v + (1-β)·∇L(θ)</span>
+        <span class="formula">θ ← θ - η·v</span>
+
+        <span class="comment">// Adam Optimizer — most popular in LLM training</span>
+        <span class="formula">m ← β₁·m + (1-β₁)·g</span>           (1st moment: mean)
+        <span class="formula">v ← β₂·v + (1-β₂)·g²</span>          (2nd moment: variance)
+        <span class="formula">m̂ = m/(1-β₁ᵗ),  v̂ = v/(1-β₂ᵗ)</span>  (bias correction)
+        <span class="formula">θ ← θ - η · m̂ / (√v̂ + ε)</span>
+
+        Typical values: β₁=0.9, β₂=0.999, ε=1e-8
+
+        <span class="comment">// Learning Rate Scheduling</span>
+        Warmup:   lr linearly increases for first T_warm steps
+        Cosine:   <span class="formula">η(t) = η_min + ½(η_max - η_min)(1 + cos(πt/T))</span>
+        → GPT-3, LLaMA all use cosine decay with warmup
+    </div>
+
+    <div class="resource-section">
+        <h4>Phase 0 Resources</h4>
+        <div class="resource-grid">
+            <div class="resource-card">
+                <div class="resource-type">📚 Book</div>
+                <div class="resource-title">Mathematics for Machine Learning</div>
+                <div class="resource-by">Deisenroth, Faisal, Ong — Cambridge Press</div>
+                <div class="resource-note">Free online at mml-book.com. Covers all four areas (linear algebra, calculus, probability, optimization) specifically for ML. Start here.</div>
+                <span class="resource-must">Must Read</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Book</div>
+                <div class="resource-title">Linear Algebra Done Right</div>
+                <div class="resource-by">Sheldon Axler</div>
+                <div class="resource-note">The cleanest treatment of linear algebra available. Proof-based. Read alongside the MML book for deeper theory.</div>
+                <span class="resource-must">Must Read</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">Gilbert Strang's Linear Algebra</div>
+                <div class="resource-by">MIT OpenCourseWare (18.06)</div>
+                <div class="resource-note">The single greatest linear algebra course ever recorded. Free on YouTube and MIT OCW. Do every problem set.</div>
+                <span class="resource-must">Must Do</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">Probability for Computer Scientists</div>
+                <div class="resource-by">Stanford CS109 — Chris Piech</div>
+                <div class="resource-note">Rigorous probability theory with ML applications. Slides + lectures free online. Superb for Bayesian intuition.</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Book</div>
+                <div class="resource-title">Introduction to Probability</div>
+                <div class="resource-by">Bertsekas & Tsitsiklis — MIT</div>
+                <div class="resource-note">Rigorous, complete, and excellent. Covers all distributions, MLE, Bayesian inference with proper mathematical treatment.</div>
+                <span class="resource-must">Must Read</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">Essence of Calculus + Essence of Linear Algebra</div>
+                <div class="resource-by">3Blue1Brown — YouTube</div>
+                <div class="resource-note">Watch FIRST before the rigorous courses. Grant Sanderson gives the best geometric intuition for calculus and linear algebra. Essential for understanding before formalism.</div>
+                <span class="resource-must">Start Here</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ PHASE 1 -->
+    <section id="phase1" class="section-header">
+        <span class="section-tag">§ 2 — Machine Learning Theory</span>
+        <h2>Phase 1: Classical Machine Learning</h2>
+        <p>Now we use the mathematics. Classical ML builds the intuition and theoretical backbone that you will rely on even when working with the largest LLMs.</p>
+    </section>
+
+    <div class="phase-card p1">
+        <span class="phase-badge">Phase 1</span>
+        <h3>Statistical Learning Theory & Classical ML</h3>
+        <p class="duration">⏱ Duration: 2–3 months · Daily: 2 hours</p>
+        <p>You must derive every model from first principles. No black boxes. When you understand logistic regression deeply, you understand the output layer of every LLM.</p>
+    </div>
+
+    <h3 class="sub">1.1 — Linear Regression (Derive Everything)</h3>
+
+    <div class="math-block" data-label="Linear Regression">
+        <span class="comment">// Model</span>
+        <span class="formula">ŷ = Xθ</span>    where X ∈ ℝⁿˣᵈ, θ ∈ ℝᵈ, ŷ ∈ ℝⁿ
+
+        <span class="comment">// Loss Function: Mean Squared Error</span>
+        <span class="formula">L(θ) = (1/n) ||y - Xθ||²₂ = (1/n)(y - Xθ)ᵀ(y - Xθ)</span>
+
+        <span class="comment">// Closed-form solution (Normal Equations)</span>
+        <span class="formula">∇_θ L = -(2/n) Xᵀ(y - Xθ) = 0</span>
+        <span class="formula">⟹ θ* = (XᵀX)⁻¹ Xᵀy</span>
+
+        <span class="comment">// Probabilistic interpretation (this connects to LLMs!)</span>
+        Assume: <span class="formula">y = Xθ + ε,  ε ~ N(0, σ²I)</span>
+        Then:   <span class="formula">P(y|X,θ) = N(Xθ, σ²I)</span>
+        MLE of θ: <span class="formula">argmax_θ log P(y|X,θ) = argmin_θ ||y - Xθ||²</span>
+        → MSE loss IS negative log-likelihood under Gaussian noise!
+
+        <span class="comment">// Gradient Descent derivation</span>
+        <span class="formula">∇_θ L = -(2/n) Xᵀ(y - Xθ)</span>
+        <span class="formula">θ ← θ - η · (-(2/n) Xᵀ(y - Xθ))</span>
+        <span class="formula">θ ← θ + (2η/n) Xᵀ(y - Xθ)</span>
+    </div>
+
+    <h3 class="sub">1.2 — Logistic Regression & Classification</h3>
+
+    <div class="math-block" data-label="Logistic Regression">
+        <span class="comment">// Sigmoid: squashes ℝ → (0,1) — probability output</span>
+        <span class="formula">σ(z) = 1 / (1 + e⁻ᶻ)</span>
+        <span class="formula">σ'(z) = σ(z)(1 - σ(z))</span>   ← you must derive this!
+
+        <span class="comment">// Model: P(y=1 | x) = σ(θᵀx)</span>
+
+        <span class="comment">// Binary Cross-Entropy Loss</span>
+        <span class="formula">L(θ) = -(1/n) Σᵢ [yᵢ log ŷᵢ + (1-yᵢ) log(1-ŷᵢ)]</span>
+
+        <span class="comment">// This IS negative log-likelihood of Bernoulli:</span>
+        <span class="formula">P(y|x,θ) = ŷʸ · (1-ŷ)¹⁻ʸ</span>
+        <span class="formula">log P = y log ŷ + (1-y) log(1-ŷ)</span>
+
+        <span class="comment">// Softmax — multiclass generalization (used in EVERY LLM output layer)</span>
+        <span class="formula">softmax(z)ₖ = e^zₖ / Σⱼ e^zⱼ</span>
+        <span class="formula">Categorical cross-entropy: L = -Σₖ yₖ log ŷₖ</span>
+        → When an LLM predicts the next token, it runs softmax on logits
+    </div>
+
+    <h3 class="sub">1.3 — Bias-Variance Tradeoff & Regularization</h3>
+
+    <div class="math-block" data-label="Bias-Variance">
+        <span class="comment">// Decomposition of Expected Error</span>
+        <span class="formula">E[(y - ŷ)²] = Bias²(ŷ) + Var(ŷ) + σ²_noise</span>
+
+        <span class="highlight">Bias²:</span>   Error from wrong model assumptions (underfitting)
+        <span class="highlight">Variance:</span> Error from sensitivity to training data (overfitting)
+        <span class="highlight">Noise:</span>    Irreducible error
+
+        <span class="comment">// Regularization: add penalty to loss to reduce variance</span>
+        L2 (Ridge):  <span class="formula">L_reg = L + λ||θ||²₂</span>  → shrinks weights toward 0
+        L1 (Lasso):  <span class="formula">L_reg = L + λ||θ||₁</span>  → forces some weights to EXACTLY 0
+
+        <span class="comment">// Why this connects to Bayesian thinking:</span>
+        L2 regularization = MAP estimation with Gaussian prior on θ
+        L1 regularization = MAP estimation with Laplace prior on θ
+
+        <span class="comment">// In deep learning: Dropout</span>
+        During training: randomly zero out each neuron with prob p
+        <span class="formula">h̃ = h ⊙ mask,  mask_i ~ Bernoulli(1-p)</span>
+        Intuition: forces network to learn redundant representations
+    </div>
+
+    <div class="resource-section">
+        <h4>Phase 1 Resources</h4>
+        <div class="resource-grid">
+            <div class="resource-card">
+                <div class="resource-type">📚 Book</div>
+                <div class="resource-title">Pattern Recognition and Machine Learning</div>
+                <div class="resource-by">Christopher Bishop — Springer</div>
+                <div class="resource-note">The graduate bible of classical ML. Every chapter is mathematically rigorous. Read chapters 1–4 deeply during this phase. Come back to it throughout your career.</div>
+                <span class="resource-must">Must Own</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Book</div>
+                <div class="resource-title">The Elements of Statistical Learning</div>
+                <div class="resource-by">Hastie, Tibshirani, Friedman — Springer (free PDF)</div>
+                <div class="resource-note">The other bible. More statistics-flavored. Free at ESL website. Read alongside Bishop. Excellent bias-variance, regularization chapters.</div>
+                <span class="resource-must">Must Read</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">CS229: Machine Learning</div>
+                <div class="resource-by">Stanford — Andrew Ng (2018 version)</div>
+                <div class="resource-note">The foundational ML course. The 2018 lecture notes are the best written ML notes in existence. Download them, study them page by page. Do every problem set.</div>
+                <span class="resource-must">Must Do</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">Probabilistic Machine Learning</div>
+                <div class="resource-by">Kevin Murphy — MIT Press + YouTube lectures</div>
+                <div class="resource-note">Two-volume modern treatment of ML from a probabilistic perspective. His newer books (PML Vol 1 & 2) are free online and more current than Bishop.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ PHASE 2 -->
+    <section id="phase2" class="section-header">
+        <span class="section-tag">§ 3 — Deep Learning</span>
+        <h2>Phase 2: Neural Networks & Deep Learning</h2>
+        <p>Here we go deeper. You will build neural networks from scratch and derive backpropagation by hand — multiple times — until it is second nature.</p>
+    </section>
+
+    <div class="phase-card p2">
+        <span class="phase-badge">Phase 2</span>
+        <h3>Deep Learning — Theory First, Code Second</h3>
+        <p class="duration">⏱ Duration: 3–4 months · Daily: 2–3 hours + coding</p>
+        <p>Do NOT start with PyTorch tutorials. First, build a neural network in plain NumPy. Then build the backward pass by hand. Then, and only then, move to frameworks.</p>
+    </div>
+
+    <h3 class="sub">2.1 — Neural Networks from Scratch</h3>
+
+    <div class="math-block" data-label="Neural Net Forward Pass">
+        <span class="comment">// A single neuron</span>
+        <span class="formula">z = wᵀx + b,   a = σ(z)</span>
+
+        <span class="comment">// A layer of neurons (vectorized)</span>
+        <span class="formula">Z⁽ˡ⁾ = W⁽ˡ⁾ A⁽ˡ⁻¹⁾ + b⁽ˡ⁾</span>   (pre-activation)
+        <span class="formula">A⁽ˡ⁾ = g⁽ˡ⁾(Z⁽ˡ⁾)</span>           (post-activation)
+
+        where g is the activation function.
+
+        <span class="comment">// Common Activation Functions:</span>
+        ReLU:     <span class="formula">g(z) = max(0, z),     g'(z) = 1 if z>0 else 0</span>
+        GeLU:     <span class="formula">g(z) = z·Φ(z)         (Φ = CDF of standard normal)</span>   ← Used in GPT!
+        Sigmoid:  <span class="formula">g(z) = 1/(1+e⁻ᶻ),    g'(z) = g(z)(1-g(z))</span>
+        Tanh:     <span class="formula">g(z) = (e^z-e⁻ᶻ)/(e^z+e⁻ᶻ)</span>
+        SwiGLU:   <span class="formula">g(x,y) = x·σ(y)       (Swish-Gated Linear Unit)</span>   ← Used in LLaMA!
+
+        <span class="comment">// Universal Approximation Theorem (conceptual)</span>
+        A 2-layer NN with enough neurons can approximate
+        ANY continuous function on a compact domain.
+        → This is WHY neural networks work.
+    </div>
+
+    <h3 class="sub">2.2 — Backpropagation (Derive It Fully)</h3>
+
+    <div class="math-block" data-label="Backpropagation">
+        <span class="comment">// Compute gradient of Loss w.r.t. every weight — via Chain Rule</span>
+
+        <span class="comment">// Define delta (error signal) at each layer:</span>
+        <span class="formula">δ⁽ᴸ⁾ = ∇_A L ⊙ g'(Z⁽ᴸ⁾)</span>         (output layer)
+        <span class="formula">δ⁽ˡ⁾ = (W⁽ˡ⁺¹⁾ᵀ δ⁽ˡ⁺¹⁾) ⊙ g'(Z⁽ˡ⁾)</span>  (hidden layers, propagate back)
+
+        <span class="comment">// Gradients for weights and biases:</span>
+        <span class="formula">∂L/∂W⁽ˡ⁾ = δ⁽ˡ⁾ · A⁽ˡ⁻¹⁾ᵀ</span>
+        <span class="formula">∂L/∂b⁽ˡ⁾ = δ⁽ˡ⁾</span>
+
+        <span class="comment">// The 4 equations of backprop (Rumelhart, 1986):</span>
+        BP1: <span class="formula">δᴸ   = ∇_a L ⊙ σ'(zᴸ)</span>
+        BP2: <span class="formula">δˡ   = ((Wˡ⁺¹)ᵀ δˡ⁺¹) ⊙ σ'(zˡ)</span>
+        BP3: <span class="formula">∂L/∂bˡ = δˡ</span>
+        BP4: <span class="formula">∂L/∂Wˡ = δˡ (aˡ⁻¹)ᵀ</span>
+
+        <span class="comment">// Vanishing gradient problem</span>
+        In deep networks:  <span class="formula">δˡ = δᴸ · Πₖ₌ₗ₊₁ᴸ (Wᵏᵀ · diag(σ'(zᵏ)))</span>
+        If σ' &lt; 1 repeatedly: gradient → 0  (vanishing)
+        If σ' &gt; 1 repeatedly: gradient → ∞  (exploding)
+        Solutions: ReLU activations, BatchNorm, ResNets, gradient clipping
+    </div>
+
+    <h3 class="sub">2.3 — Normalization, Residual Connections, and Training Tricks</h3>
+
+    <div class="math-block" data-label="Key Architectures">
+        <span class="comment">// Batch Normalization</span>
+        <span class="formula">μ_B = (1/m) Σᵢ xᵢ,   σ²_B = (1/m) Σᵢ (xᵢ - μ_B)²</span>
+        <span class="formula">x̂ᵢ = (xᵢ - μ_B) / √(σ²_B + ε)</span>
+        <span class="formula">yᵢ = γ x̂ᵢ + β</span>   (learnable scale and shift)
+        Effect: stabilizes training, allows higher learning rates
+
+        <span class="comment">// Layer Normalization (used in Transformers — NOT batch norm)</span>
+        <span class="formula">LN(x) = γ · (x - μ_layer) / √(σ²_layer + ε) + β</span>
+        Difference: normalize ACROSS features, not across batch
+        → Works better for variable-length sequences (like text!)
+
+        <span class="comment">// Residual (Skip) Connections — from ResNet (He et al., 2016)</span>
+        <span class="formula">H(x) = F(x) + x</span>
+        Where F(x) = what the layers learn, x = shortcut
+        Effect: gradient flows directly through skip connection
+        → Transformers use this between EVERY sub-layer
+        → Enables training 100s of layers without vanishing gradients
+
+        <span class="comment">// Dropout</span>
+        <span class="formula">ỹ = y ⊙ m / (1-p),  mᵢ ~ Bernoulli(1-p)</span>
+        (divide by (1-p) to keep expected value same at test time)
+    </div>
+
+    <h3 class="sub">2.4 — CNNs and RNNs (Know the History)</h3>
+
+    <p class="body">Convolutional networks and recurrent networks dominated the decade before Transformers. You need to understand them because (1) Transformers replaced them for specific reasons, and (2) CNNs are still used in vision models that connect to multimodal LLMs.</p>
+
+    <div class="math-block" data-label="CNN & RNN">
+        <span class="comment">// Convolution operation</span>
+        <span class="formula">(f * g)[n] = Σₖ f[k] · g[n-k]</span>
+        <span class="formula">Output[i,j] = Σₘ Σₙ Input[i+m, j+n] · Kernel[m,n]</span>
+
+        Parameter sharing: same kernel slides over entire image
+        Translation equivariance: shift input → shift output
+
+        <span class="comment">// RNN: hidden state carries information through time</span>
+        <span class="formula">hₜ = tanh(Wₓₓ xₜ + Wₕₕ hₜ₋₁ + b)</span>
+        Problem: gradient of L w.r.t. h₁ = Π (∂hₜ/∂hₜ₋₁)
+        → vanishing/exploding gradients over long sequences!
+
+        <span class="comment">// LSTM: gates control information flow</span>
+        <span class="formula">fₜ = σ(Wf·[hₜ₋₁, xₜ] + bf)</span>   (forget gate)
+        <span class="formula">iₜ = σ(Wᵢ·[hₜ₋₁, xₜ] + bᵢ)</span>   (input gate)
+        <span class="formula">c̃ₜ = tanh(Wc·[hₜ₋₁, xₜ] + bc)</span> (candidate cell)
+        <span class="formula">cₜ = fₜ ⊙ cₜ₋₁ + iₜ ⊙ c̃ₜ</span>   (cell state update)
+        <span class="formula">oₜ = σ(Wo·[hₜ₋₁, xₜ] + bo)</span>   (output gate)
+        <span class="formula">hₜ = oₜ ⊙ tanh(cₜ)</span>
+
+        WHY TRANSFORMERS REPLACED RNNs:
+        → RNNs must process tokens SEQUENTIALLY — not parallelizable
+        → Transformers process ALL tokens simultaneously
+        → Attention has direct path between any two positions
+        → Training is orders of magnitude faster on GPUs
+    </div>
+
+    <div class="resource-section">
+        <h4>Phase 2 Resources</h4>
+        <div class="resource-grid">
+            <div class="resource-card">
+                <div class="resource-type">📚 Book</div>
+                <div class="resource-title">Deep Learning</div>
+                <div class="resource-by">Goodfellow, Bengio, Courville — MIT Press (free online)</div>
+                <div class="resource-note">The definitive deep learning textbook. Read chapters 6–9 (MLPs, regularization, optimization, CNNs) now. Return to ch 10–12 for RNNs, autoencoders.</div>
+                <span class="resource-must">Must Read</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">CS231n: CNNs for Visual Recognition</div>
+                <div class="resource-by">Stanford — Karpathy, Li et al.</div>
+                <div class="resource-note">Best course for deep learning foundations. The lecture notes are legendary. Assignment 1 (backprop from scratch in NumPy) is mandatory. Do it.</div>
+                <span class="resource-must">Must Do</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🔨 Project</div>
+                <div class="resource-title">micrograd — build autograd from scratch</div>
+                <div class="resource-by">Andrej Karpathy — GitHub</div>
+                <div class="resource-note">Karpathy's tiny autograd engine. Understand every line. Then build your own from scratch without looking. This is the ultimate backprop exercise.</div>
+                <span class="resource-must">Must Build</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">Neural Networks: Zero to Hero</div>
+                <div class="resource-by">Andrej Karpathy — YouTube</div>
+                <div class="resource-note">Best practical deep learning series on YouTube. Karpathy builds everything from scratch with exceptional clarity. Watch all episodes in order.</div>
+                <span class="resource-must">Must Watch</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Book</div>
+                <div class="resource-title">Understanding Deep Learning</div>
+                <div class="resource-by">Simon Prince — MIT Press (free PDF 2023)</div>
+                <div class="resource-note">The newest, most comprehensive deep learning textbook. Better diagrams than Goodfellow. Chapter by chapter covers everything from MLPs to diffusion models.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ PHASE 3 -->
+    <section id="phase3" class="section-header">
+        <span class="section-tag">§ 4 — Natural Language Processing</span>
+        <h2>Phase 3: NLP Foundations</h2>
+        <p>How do we turn human language — messy, ambiguous, context-dependent — into mathematics? This phase answers that question from first principles.</p>
+    </section>
+
+    <div class="phase-card p3">
+        <span class="phase-badge">Phase 3</span>
+        <h3>Natural Language Processing — Vectors, Embeddings, Language Models</h3>
+        <p class="duration">⏱ Duration: 2 months · Daily: 2 hours</p>
+        <p>We start with the simplest representation of text and build up to the embeddings that power modern LLMs. Understanding the evolution is key to understanding Transformers.</p>
+    </div>
+
+    <h3 class="sub">3.1 — Text Representation</h3>
+
+    <div class="math-block" data-label="Text → Vectors">
+        <span class="comment">// Step 1: Tokenization</span>
+        "Hello world" → ["Hello", "world"] or ["Hell", "o", "world"]
+        Modern LLMs use Byte Pair Encoding (BPE):
+        - Start with characters
+        - Iteratively merge most frequent adjacent pairs
+        - Vocabulary size: typically 32k–128k tokens
+
+        <span class="comment">// Step 2: One-Hot Encoding (naive baseline)</span>
+        Vocab = {cat, dog, fish},  V = 3
+        "cat" → [1, 0, 0]
+        "dog" → [0, 1, 0]
+        Problems:
+        - dimensionality = vocab size (tens of thousands)
+        - all words equally "distant" — no semantic info
+        - dot product of any two different words = 0
+
+        <span class="comment">// Step 3: TF-IDF (for retrieval, still used in RAG systems)</span>
+        <span class="formula">TF(t,d) = count(t in d) / |d|</span>
+        <span class="formula">IDF(t)  = log(N / df(t))</span>
+        <span class="formula">TF-IDF(t,d) = TF(t,d) · IDF(t)</span>
+        Intuition: weight terms that are frequent in doc but rare overall
+    </div>
+
+    <h3 class="sub">3.2 — Word Embeddings (The Breakthrough)</h3>
+
+    <div class="math-block" data-label="Word Embeddings">
+        <span class="comment">// Key insight: represent words as DENSE low-dimensional vectors</span>
+        Embedding dimension d ≪ vocab size V
+        Each word → vector in ℝᵈ (d typically 100–300)
+
+        <span class="comment">// Word2Vec: Mikolov et al. 2013 — two variants</span>
+        <span class="highlight">Skip-gram:</span> given center word, predict context words
+        Objective: <span class="formula">max Σ_t Σ_{-c≤j≤c, j≠0} log P(wₜ₊ⱼ | wₜ)</span>
+        <span class="formula">P(wₒ|wᵢ) = exp(vₒ · vᵢ) / Σⱼ exp(vⱼ · vᵢ)</span>  (softmax over vocab)
+
+        <span class="highlight">CBOW:</span> given context words, predict center word
+
+        <span class="comment">// Remarkable properties learned:</span>
+        <span class="formula">vec("King") - vec("Man") + vec("Woman") ≈ vec("Queen")</span>
+        <span class="formula">vec("Paris") - vec("France") + vec("Germany") ≈ vec("Berlin")</span>
+        → Linear algebra in embedding space encodes SEMANTIC STRUCTURE
+
+        <span class="comment">// GloVe: Global Vectors (Pennington et al. 2014)</span>
+        Train on co-occurrence matrix Xᵢⱼ = count(word i, word j together)
+        Objective: <span class="formula">Σᵢⱼ f(Xᵢⱼ)(vᵢᵀṽⱼ + bᵢ + b̃ⱼ - log Xᵢⱼ)²</span>
+        → Explicit factorization of co-occurrence statistics
+
+        <span class="comment">// Key limitation of both:</span>
+        "bank" near "river" vs "bank" near "money"
+        → same vector regardless of context!
+        → This is why we need CONTEXTUAL embeddings (BERT, GPT)
+    </div>
+
+    <h3 class="sub">3.3 — Language Modeling (n-gram → Neural)</h3>
+
+    <div class="math-block" data-label="Language Models">
+        <span class="comment">// A language model assigns probability to sequences of words</span>
+        <span class="formula">P(w₁, w₂, ..., wₙ) = Π P(wₜ | w₁, ..., wₜ₋₁)</span>
+
+        <span class="comment">// n-gram model (classical)</span>
+        Markov assumption: <span class="formula">P(wₜ | w₁..wₜ₋₁) ≈ P(wₜ | wₜ₋ₙ₊₁..wₜ₋₁)</span>
+        Bigram: <span class="formula">P(wₜ | wₜ₋₁) = count(wₜ₋₁, wₜ) / count(wₜ₋₁)</span>
+        Sparsity problem: most n-grams never seen in training data
+
+        <span class="comment">// Neural Language Model: Bengio et al. 2003</span>
+        - Look up embeddings for context words
+        - Feed through MLP
+        - Output: softmax over vocabulary
+        <span class="formula">P(wₜ | w₁..wₜ₋₁) = softmax(W₂ tanh(W₁[eₜ₋₁;...;eₜ₋ₙ] + b₁) + b₂)</span>
+        This was the precursor to Transformers!
+
+        <span class="comment">// Perplexity — the standard evaluation metric for LMs</span>
+        <span class="formula">PPL(W) = exp(-(1/N) Σₜ log P(wₜ | w₁..wₜ₋₁))</span>
+        = exp(cross-entropy loss)
+        Lower perplexity = better model (less surprised by held-out text)
+        GPT-2: PPL ≈ 35  on WikiText-103
+        GPT-3: PPL ≈ 20  on WikiText-103
+        LLaMA-3 70B: PPL ≈ 10
+    </div>
+
+    <div class="resource-section">
+        <h4>Phase 3 Resources</h4>
+        <div class="resource-grid">
+            <div class="resource-card">
+                <div class="resource-type">📚 Book</div>
+                <div class="resource-title">Speech and Language Processing (3rd ed.)</div>
+                <div class="resource-by">Jurafsky & Martin — Stanford (free PDF)</div>
+                <div class="resource-note">The NLP bible. Free draft at web.stanford.edu. Read chapters on language models, embeddings, neural nets for NLP, then transformers. Updated regularly.</div>
+                <span class="resource-must">Must Read</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">CS224n: NLP with Deep Learning</div>
+                <div class="resource-by">Stanford — Christopher Manning</div>
+                <div class="resource-note">The definitive NLP course. Covers everything from word vectors to Transformers to LLMs. Lecture slides and notes are publicly available. Do all assignments.</div>
+                <span class="resource-must">Must Do</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">Hugging Face NLP Course</div>
+                <div class="resource-by">Hugging Face — free at huggingface.co/learn</div>
+                <div class="resource-note">Hands-on, practical. Learn to use tokenizers, BERT, GPT models in code. After the theory phases, this bridges to practical implementation beautifully.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ PHASE 4 -->
+    <section id="phase4" class="section-header">
+        <span class="section-tag">§ 5 — The Architecture That Changed Everything</span>
+        <h2>Phase 4: Transformers — Deep Dive</h2>
+        <p>This is the most important architecture in modern AI. You must understand every equation, every design decision, and every trade-off. There is no shortcut here.</p>
+    </section>
+
+    <div class="phase-card p4">
+        <span class="phase-badge">Phase 4</span>
+        <h3>Transformers: Attention Is All You Need</h3>
+        <p class="duration">⏱ Duration: 2–3 months · Daily: 3 hours</p>
+        <p>Read the original paper (Vaswani et al. 2017) ten times. Build it from scratch in PyTorch without looking at existing implementations. This is a rite of passage.</p>
+    </div>
+
+    <h3 class="sub">4.1 — The Attention Mechanism</h3>
+
+    <div class="math-block" data-label="Attention">
+        <span class="comment">// Intuition: for each word, attend to ALL other words and aggregate</span>
+
+        <span class="comment">// Three learned projections from input X ∈ ℝⁿˣᵈ:</span>
+        <span class="formula">Q = X · Wq   (queries — "what am I looking for?")</span>
+        <span class="formula">K = X · Wk   (keys    — "what do I contain?")</span>
+        <span class="formula">V = X · Wv   (values  — "what do I communicate?")</span>
+
+        <span class="formula">Wq, Wk ∈ ℝᵈˣᵈₖ,   Wv ∈ ℝᵈˣᵈᵥ</span>
+
+        <span class="comment">// Scaled Dot-Product Attention</span>
+        <span class="formula">Attention(Q, K, V) = softmax(QKᵀ / √dₖ) · V</span>
+
+        Step-by-step:
+        1. <span class="formula">S = QKᵀ</span>          Sᵢⱼ = how much token i attends to token j   [n×n]
+        2. <span class="formula">S̃ = S / √dₖ</span>     Scale to prevent softmax saturation
+        3. <span class="formula">A = softmax(S̃)</span>   Normalize so rows sum to 1                  [n×n]
+        4. <span class="formula">O = A · V</span>        Weighted sum of values                      [n×dᵥ]
+
+        <span class="comment">// WHY √dₖ scaling?</span>
+        If Q,K have unit variance, QKᵀ has variance dₖ.
+        Without scaling, softmax saturates (near 0 or 1 everywhere).
+        Dividing by √dₖ normalizes variance back to ~1.
+
+        <span class="comment">// Causal (Masked) Attention — for autoregressive LMs</span>
+        Apply mask before softmax:
+        <span class="formula">S̃ᵢⱼ = -∞ for j > i    (token i cannot see future tokens)</span>
+        After softmax: Aᵢⱼ = 0 for j > i   → lower triangular attention
+    </div>
+
+    <h3 class="sub">4.2 — Multi-Head Attention</h3>
+
+    <div class="math-block" data-label="Multi-Head Attention">
+        <span class="comment">// Intuition: run h attention "heads" in parallel — each learns different relationships</span>
+        <span class="comment">// Example: head 1 = syntax, head 2 = coreference, head 3 = semantics</span>
+
+        <span class="formula">headᵢ = Attention(Q·Wqᵢ, K·Wkᵢ, V·Wvᵢ)</span>
+
+        <span class="formula">MultiHead(Q,K,V) = Concat(head₁, ..., headₕ) · Wₒ</span>
+
+        where <span class="formula">Wqᵢ, Wkᵢ ∈ ℝᵈˣ⁽ᵈ/ʰ⁾</span>
+
+        Total parameters in MHA:
+        <span class="formula">4 × d² (for Wq, Wk, Wv, Wo)</span>
+
+        <span class="comment">// Grouped Query Attention (GQA) — used in LLaMA 2/3</span>
+        Instead of h separate K,V heads, use G groups (G &lt; h)
+        Heads in same group SHARE K,V projections
+        Saves memory during inference (smaller KV-cache)
+        <span class="formula">GQA(Q,K,V): h query heads, G key-value heads, h/G per group</span>
+
+        <span class="comment">// Flash Attention (Dao et al. 2022) — critical for efficiency</span>
+        Problem: QKᵀ matrix is O(n²) in memory
+        FlashAttention: tile the computation, never materialize full n×n matrix
+        Result: O(n) memory, same output, 2-4x faster
+        → Used in ALL modern LLM training and inference
+    </div>
+
+    <h3 class="sub">4.3 — Full Transformer Architecture</h3>
+
+    <div class="math-block" data-label="Transformer Block">
+        <span class="comment">// One Transformer ENCODER block (as in BERT):</span>
+        <span class="formula">h¹ = LayerNorm(x + MultiHeadAttn(x, x, x))</span>   (self-attention + residual)
+        <span class="formula">h² = LayerNorm(h¹ + FFN(h¹))</span>                   (FFN + residual)
+
+        <span class="comment">// Feed-Forward Network (FFN) in each block:</span>
+        <span class="formula">FFN(x) = W₂ · ReLU(W₁x + b₁) + b₂</span>
+        Dimensions: d → 4d → d   (expands then contracts)
+        Parameters: 2 × d × 4d = 8d²   (LARGER than attention!)
+
+        <span class="comment">// Positional Encoding (original sin+cos version):</span>
+        <span class="formula">PE(pos, 2i)   = sin(pos / 10000^(2i/d))</span>
+        <span class="formula">PE(pos, 2i+1) = cos(pos / 10000^(2i/d))</span>
+
+        Modern alternative: RoPE (Rotary Position Embeddings — Su et al. 2021)
+        <span class="formula">Apply rotation matrix R(mθ) to Q,K before attention:</span>
+        <span class="formula">qₘᵀ kₙ = (Rₘ qₘ)ᵀ (Rₙ kₙ) = qₘᵀ Rₙ₋ₘ kₙ</span>
+        → Depends only on RELATIVE position (m-n), not absolute!
+        → Used in LLaMA, Falcon, Mistral, Qwen, and most modern LLMs
+
+        <span class="comment">// Full Parameter Count (GPT-2 Small: d=768, L=12 layers, h=12 heads):</span>
+        Embedding:  V × d = 50257 × 768 = 38.6M
+        Per layer:  4d² (attn) + 8d² (FFN) = 12d² = ~7.1M
+        12 layers:  12 × 7.1M = ~85M
+        Total:      ~117M params ← matches official GPT-2 small count!
+    </div>
+
+    <h3 class="sub">4.4 — Training Objectives</h3>
+
+    <div class="math-block" data-label="Pre-training Objectives">
+        <span class="comment">// GPT-style: Causal Language Modeling (CLM)</span>
+        <span class="formula">L_CLM = -(1/T) Σₜ log P(wₜ | w₁, w₂, ..., wₜ₋₁; θ)</span>
+        Autoregressive: predict each token from left context only.
+        Used by: GPT-2, GPT-3, GPT-4, LLaMA, Mistral, Gemma, Qwen, etc.
+
+        <span class="comment">// BERT-style: Masked Language Modeling (MLM)</span>
+        Randomly mask 15% of tokens, predict them:
+        <span class="formula">L_MLM = -Σ_{i ∈ masked} log P(wᵢ | w̃; θ)</span>
+        w̃ = sequence with some tokens replaced by [MASK]
+        Bidirectional context — sees left AND right.
+        Used by: BERT, RoBERTa, ELECTRA, DeBERTa
+
+        <span class="comment">// T5-style: Span Corruption</span>
+        Replace contiguous spans with single [MASK] tokens:
+        Model must recover entire spans.
+        Used by: T5, FLAN-T5, mT5
+
+        <span class="comment">// Modern trend: multimodal pre-training</span>
+        LLaVA, GPT-4V: L = L_text + L_image_text_alignment
+        CLIP: Contrastive loss between image-text pairs:
+        <span class="formula">L_CLIP = -log [exp(sim(vᵢ,tᵢ)/τ) / Σⱼ exp(sim(vᵢ,tⱼ)/τ)]</span>
+    </div>
+
+    <div class="resource-section">
+        <h4>Phase 4 Resources</h4>
+        <div class="resource-grid">
+            <div class="resource-card">
+                <div class="resource-type">📄 Paper</div>
+                <div class="resource-title">Attention Is All You Need</div>
+                <div class="resource-by">Vaswani et al., 2017 — arXiv:1706.03762</div>
+                <div class="resource-note">Read it 10 times. Implement every equation. This single paper changed all of AI. Every modern LLM descends from this work.</div>
+                <span class="resource-must">Read First</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🔨 Project</div>
+                <div class="resource-title">nanoGPT — build GPT from scratch</div>
+                <div class="resource-by">Andrej Karpathy — GitHub</div>
+                <div class="resource-note">The cleanest GPT implementation in existence. ~300 lines of PyTorch. Study it until you can reproduce it from memory. Then train on Shakespeare.</div>
+                <span class="resource-must">Must Build</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📝 Blog</div>
+                <div class="resource-title">The Illustrated Transformer</div>
+                <div class="resource-by">Jay Alammar — jalammar.github.io</div>
+                <div class="resource-note">The best visual explanation of the Transformer ever written. Read after the paper for visual confirmation of your understanding.</div>
+                <span class="resource-must">Must Read</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Lecture</div>
+                <div class="resource-title">Let's build GPT (YouTube)</div>
+                <div class="resource-by">Andrej Karpathy — 2h video</div>
+                <div class="resource-note">Karpathy codes GPT from scratch live. Do not watch passively — type every line alongside him, then rebuild from scratch immediately after.</div>
+                <span class="resource-must">Must Watch</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📄 Paper</div>
+                <div class="resource-title">BERT: Pre-training of Deep Bidirectional Transformers</div>
+                <div class="resource-by">Devlin et al., 2018 — arXiv:1810.04805</div>
+                <div class="resource-note">The encoder-side Transformer. Understand how MLM and NSP objectives work. Essential for understanding fine-tuning and NLU tasks.</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📝 Blog</div>
+                <div class="resource-title">Transformer Math 101</div>
+                <div class="resource-by">EleutherAI Blog</div>
+                <div class="resource-note">Excellent deep dive into the math of Transformer compute, memory, and flop counting. Essential for understanding scaling laws.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ PHASE 5 -->
+    <section id="phase5" class="section-header">
+        <span class="section-tag">§ 6 — Large Language Models</span>
+        <h2>Phase 5: LLM Systems — From GPT to Agents</h2>
+        <p>Now we scale. You understand the building block. Now you learn how to train it at massive scale, align it with human preferences, and deploy it in real systems.</p>
+    </section>
+
+    <div class="phase-card p5">
+        <span class="phase-badge">Phase 5</span>
+        <h3>Modern LLMs: Architecture, Training, Alignment, and Systems</h3>
+        <p class="duration">⏱ Duration: 3–4 months · Daily: 3 hours</p>
+        <p>This phase spans multiple sub-fields: scaling laws, RLHF, efficient fine-tuning, RAG, agents. Every topic here has active research happening now.</p>
+    </div>
+
+    <h3 class="sub">5.1 — Scaling Laws</h3>
+
+    <div class="math-block" data-label="Scaling Laws">
+        <span class="comment">// Kaplan et al. 2020 (OpenAI) — original scaling laws</span>
+        Loss scales as power law with compute, data, and parameters:
+        <span class="formula">L(N) = (Nc/N)^αN</span>   (w.r.t. parameters N)
+        <span class="formula">L(D) = (Dc/D)^αD</span>   (w.r.t. dataset size D)
+        <span class="formula">L(C) ≈ C^(-0.05)</span>   (w.r.t. compute C in FLOPs)
+
+        Optimal allocation: <span class="formula">N ∝ C^0.73,  D ∝ C^0.27</span>
+        → More compute → increase params FASTER than data
+
+        <span class="comment">// Chinchilla (Hoffmann et al. 2022 — DeepMind) — revised laws</span>
+        For compute-optimal training:
+        <span class="formula">N_opt = D_opt</span>   (parameters and tokens should scale EQUALLY)
+        <span class="formula">C ≈ 6ND FLOPs</span>  (6 flops per parameter per token — forward + backward)
+
+        Chinchilla-optimal: 1B param model → train on 20B tokens
+        GPT-3 (175B params, 300B tokens) was UNDER-trained by Chinchilla standards!
+        LLaMA: 65B params × 1.4T tokens → trained far beyond Chinchilla optimal
+        → better inference-time performance
+
+        <span class="comment">// Emergent Abilities (Wei et al. 2022)</span>
+        Some capabilities appear ONLY above critical parameter count:
+        - Chain-of-thought reasoning: emerges ~100B params
+        - BIG-Bench tasks: sudden jumps at scale thresholds
+        Debate: are these truly emergent or artifact of metrics?
+    </div>
+
+    <h3 class="sub">5.2 — Fine-Tuning & Alignment</h3>
+
+    <div class="math-block" data-label="Fine-Tuning & RLHF">
+        <span class="comment">// Full Fine-Tuning: update ALL parameters on task data</span>
+        Problem: requires same memory as pre-training, expensive
+
+        <span class="comment">// LoRA: Low-Rank Adaptation (Hu et al. 2021)</span>
+        Key insight: weight updates during fine-tuning are LOW RANK
+        Instead of updating W ∈ ℝᵈˣᵈ:
+        <span class="formula">W' = W + ΔW = W + B·A</span>
+        where <span class="formula">B ∈ ℝᵈˣʳ, A ∈ ℝʳˣᵈ,  r ≪ d</span>
+
+        If d=4096, r=8:  ΔW has 4096² = 16M params
+        B·A has 2×4096×8 = 65K params  → 250x fewer!
+        Only train A and B, keep W frozen.
+
+        QLoRA (Dettmers et al. 2023): also quantize base model to 4-bit
+        → Fine-tune 65B model on a single A100!
+
+        <span class="comment">// RLHF: Reinforcement Learning from Human Feedback (InstructGPT)</span>
+
+        Step 1: Supervised Fine-Tuning (SFT)
+        Fine-tune pretrained LM on (prompt, ideal response) pairs
+        <span class="formula">L_SFT = -(1/T) Σₜ log π_SFT(yₜ | y&lt;t, x)</span>
+
+        Step 2: Train a Reward Model
+        Humans rank responses: (preferred yᵥ, rejected yₗ)
+        <span class="formula">L_RM = -log σ(r(x, yᵥ) - r(x, yₗ))</span>
+
+        Step 3: PPO Optimization
+        <span class="formula">L_RLHF = E[r(x,y)] - β · KL(π_RL || π_SFT)</span>
+        KL term prevents model drifting too far from SFT
+
+        <span class="comment">// DPO: Direct Preference Optimization (Rafailov et al. 2023)</span>
+        Skip reward model entirely — optimize preferences directly:
+        <span class="formula">L_DPO = -E[log σ(β log(π_θ(yᵥ|x)/π_ref(yᵥ|x)) - β log(π_θ(yₗ|x)/π_ref(yₗ|x)))]</span>
+        → Simpler, more stable than RLHF, widely adopted
+        → Used to align LLaMA 2 Chat, Zephyr, Tulu 2
+
+        <span class="comment">// GRPO (Group Relative Policy Optimization — DeepSeek-R1, 2025)</span>
+        Samples G outputs per prompt, uses relative reward as baseline:
+        <span class="formula">Â_i = (rᵢ - mean(r)) / std(r)</span>  (no separate critic model needed)
+        → Powers the reasoning capabilities of DeepSeek-R1
+    </div>
+
+    <h3 class="sub">5.3 — RAG, Agents, and Modern LLM Systems</h3>
+
+    <div class="math-block" data-label="RAG & Agents">
+        <span class="comment">// RAG: Retrieval-Augmented Generation (Lewis et al. 2020)</span>
+        Problem: LLMs "hallucinate" facts and have knowledge cutoff
+        Solution: retrieve relevant documents at inference time
+
+        Architecture:
+        1. Query → Embedding (via encoder like BERT/E5/BGE)
+        2. Search vector database (Faiss, Pinecone, Weaviate, Chroma)
+        <span class="formula">score(q, dᵢ) = cosine_sim(embed(q), embed(dᵢ))</span>
+        3. Top-k docs → Context → LLM → Answer
+
+        Dense Passage Retrieval (DPR):
+        <span class="formula">sim(q,d) = E_q(q)ᵀ · E_d(d)</span>   (separate encoders for query and doc)
+        Fine-tuned with in-batch negatives:
+        <span class="formula">L = -log [exp(sim(q,d⁺)) / (exp(sim(q,d⁺)) + Σⱼ exp(sim(q,dⱼ⁻)))]</span>
+
+        <span class="comment">// Agents: LLMs that can take actions</span>
+        Core loop:
+        Observe → Think (chain-of-thought) → Act → Observe → ...
+
+        ReAct (Yao et al. 2022):
+        Interleave Reasoning and Acting:
+        "Thought: I need to search for X"
+        "Action: search(X)"
+        "Observation: [result]"
+        "Thought: Based on result..."
+
+        Tool use: LLM outputs structured JSON for tool calls
+        Function calling (OpenAI) / tool_use (Anthropic) APIs
+
+        <span class="comment">// Speculative Decoding — faster inference</span>
+        Small draft model proposes k tokens
+        Large model verifies all k in parallel (single forward pass)
+        Accept accepted tokens, reject rest
+        Speedup: 2–3x with no quality loss
+    </div>
+
+    <div class="resource-section">
+        <h4>Phase 5 Resources</h4>
+        <div class="resource-grid">
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">CS324: Large Language Models</div>
+                <div class="resource-by">Stanford — Percy Liang et al.</div>
+                <div class="resource-note">The first dedicated LLM course at Stanford. Covers scaling, alignment, capabilities, risks. Lecture notes publicly available. Essential reading.</div>
+                <span class="resource-must">Must Read</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">🎥 Course</div>
+                <div class="resource-title">LLM Bootcamp</div>
+                <div class="resource-by">Full Stack Deep Learning — free on YouTube</div>
+                <div class="resource-note">Extremely practical. Covers prompt engineering, RAG, agents, evaluation, deployment. Watch all lectures and do the labs.</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📄 Paper</div>
+                <div class="resource-title">InstructGPT (RLHF)</div>
+                <div class="resource-by">Ouyang et al., 2022 — arXiv:2203.02155</div>
+                <div class="resource-note">The foundational paper for aligning LLMs with RLHF. Read with the PPO paper (Schulman et al.) to understand the full training pipeline of ChatGPT-era models.</div>
+                <span class="resource-must">Must Read</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Book</div>
+                <div class="resource-title">Build a Large Language Model (from Scratch)</div>
+                <div class="resource-by">Sebastian Raschka — Manning Publications, 2024</div>
+                <div class="resource-note">The most hands-on LLM book available. Implement GPT-2 from scratch, pre-train it, then fine-tune it. Chapter by chapter coding.</div>
+                <span class="resource-must">Must Read</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📄 Paper</div>
+                <div class="resource-title">LLaMA: Open and Efficient Foundation Language Models</div>
+                <div class="resource-by">Touvron et al., 2023 — arXiv:2302.13971</div>
+                <div class="resource-note">The paper that democratized LLMs. Study the architecture choices: RoPE, SwiGLU, RMSNorm. Every modern open-source LLM uses these innovations.</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📝 Blog</div>
+                <div class="resource-title">Lilian Weng's Blog</div>
+                <div class="resource-by">lilianweng.github.io</div>
+                <div class="resource-note">Former OpenAI researcher. Every post is a landmark reference on attention, LLMs, RLHF, agents, diffusion models. Read every post. Bookmark it permanently.</div>
+                <span class="resource-must">Must Follow</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ PHASE 6 -->
+    <section id="phase6" class="section-header">
+        <span class="section-tag">§ 7 — Research Level</span>
+        <h2>Phase 6: Research Mastery</h2>
+        <p>You now have the tools. The question is: how do you enter the research community, contribute original work, and push the field forward?</p>
+    </section>
+
+    <div class="phase-card p6">
+        <span class="phase-badge">Phase 6</span>
+        <h3>From Practitioner to Researcher</h3>
+        <p class="duration">⏱ Duration: Ongoing — this phase never ends</p>
+        <p>Research is not a destination but a practice. It is reading, reproducing, breaking, fixing, questioning, and writing. Every great researcher failed a hundred experiments before one worked.</p>
+    </div>
+
+    <h3 class="sub">6.1 — How to Read Research Papers</h3>
+
+    <ol class="steps">
+        <li><strong>First pass (5 min): Title, Abstract, Conclusion</strong><span>Understand what they claim. Can you state the contribution in one sentence? If not, read again.</span></li>
+        <li><strong>Second pass (30 min): Introduction, Figures, Method section headers</strong><span>Understand the problem setting, why prior work fails, and at a high level what they propose.</span></li>
+        <li><strong>Third pass (2–3 hours): Full paper with equations</strong><span>Derive every equation. Reproduce every table mentally. Ask: What assumptions are made? What would happen if assumption X were violated?</span></li>
+        <li><strong>Fourth pass: Reproduce the paper</strong><span>Implement their method from scratch (NOT using their code). If your numbers do not match, you do not understand the paper yet.</span></li>
+        <li><strong>Fifth pass: Critique and extend</strong><span>What are the limitations? What experiments were NOT run? What would you try differently?</span></li>
+    </ol>
+
+    <h3 class="sub">6.2 — Active Research Areas (2024–2026)</h3>
+
+    <div class="topic-grid">
+        <div class="topic-item">
+            <h4>Reasoning & RL for LLMs</h4>
+            <p>Chain-of-thought, process reward models, MCTS for language, DeepSeek-R1 style GRPO training. Open frontier.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Efficient Architectures</h4>
+            <p>Mamba (SSMs), RWKV, Hyena — replacing attention with linear-time alternatives. Rich theoretical depth.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Multimodal Models</h4>
+            <p>Vision-language models (LLaVA, Flamingo), audio-language (Whisper+), video understanding. Fast moving.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Long Context</h4>
+            <p>RoPE scaling, ALiBi, YaRN — extending context windows from 4K to 1M+ tokens. Active research.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Mechanistic Interpretability</h4>
+            <p>Understanding WHAT and WHERE LLMs store knowledge. Circuits, superposition, feature geometry. Anthropic's core focus.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Quantization & Compression</h4>
+            <p>GPTQ, AWQ, SmoothQuant, 1-bit LLMs (BitNet). Making LLMs run on edge devices. High practical impact.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Alignment & Safety</h4>
+            <p>Constitutional AI, scalable oversight, reward modeling robustness. Critical as models get more capable.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Synthetic Data & Self-improvement</h4>
+            <p>Distillation, self-play, model-generated training data. Phi series, Gemma: quality over quantity.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Mixture of Experts (MoE)</h4>
+            <p>Sparse activation: only k of N expert FFN layers fire per token. Mixtral, DeepSeek-MoE, Grok-1.</p>
+        </div>
+    </div>
+
+    <h3 class="sub">6.3 — The Research Workflow</h3>
+
+    <ol class="steps">
+        <li><strong>Survey the literature</strong><span>Use Semantic Scholar, arXiv, Papers With Code. For any area, read the 10 most cited papers from last 3 years first.</span></li>
+        <li><strong>Find the gap</strong><span>After reading 20+ papers: what question keeps being assumed away? What baseline is unfairly weak? What setting is unexplored?</span></li>
+        <li><strong>Formulate a hypothesis</strong><span>State it precisely. "We hypothesize that X improves Y on Z because of mechanism M." This forces clarity before you write code.</span></li>
+        <li><strong>Run ablations, not just the main experiment</strong><span>What happens if you remove component A? Replace B with C? The ablations are where understanding lives.</span></li>
+        <li><strong>Write continuously</strong><span>Keep a daily research log. Thoughts, experiments, failures. Your paper draft starts from your log.</span></li>
+        <li><strong>Submit, get rejected, revise, resubmit</strong><span>Every great researcher has a drawer full of rejected papers. Rejection is data, not verdict.</span></li>
+    </ol>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ BOOKS -->
+    <section id="books" class="section-header">
+        <span class="section-tag">§ 8 — The Library</span>
+        <h2>Complete Book List</h2>
+        <p>These are not suggestions. These are the books. Own them. Annotate them. Return to them every year as your understanding deepens.</p>
+    </section>
+
+    <div class="resource-section">
+        <h4>Tier 1 — Must Own, Must Read Cover to Cover</h4>
+        <div class="resource-grid">
+            <div class="resource-card">
+                <div class="resource-type">📚 Mathematics</div>
+                <div class="resource-title">Mathematics for Machine Learning</div>
+                <div class="resource-by">Deisenroth, Faisal, Ong — Free at mml-book.com</div>
+                <div class="resource-note">Start here before any other book. Covers linear algebra, calculus, probability, optimization all in ML context.</div>
+                <span class="resource-must">Phase 0</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Classical ML</div>
+                <div class="resource-title">Pattern Recognition & Machine Learning</div>
+                <div class="resource-by">Christopher Bishop — Springer</div>
+                <div class="resource-note">The graduate ML bible. Probabilistic framework, Bayesian methods, kernel methods, graphical models. Every equation is proven.</div>
+                <span class="resource-must">Phase 1</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Deep Learning</div>
+                <div class="resource-title">Deep Learning</div>
+                <div class="resource-by">Goodfellow, Bengio, Courville — Free at deeplearningbook.org</div>
+                <div class="resource-note">The deep learning bible. Mathematical, rigorous, comprehensive. Covers MLPs, CNNs, RNNs, optimization, regularization, autoencoders.</div>
+                <span class="resource-must">Phase 2</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 NLP</div>
+                <div class="resource-title">Speech and Language Processing (3rd ed.)</div>
+                <div class="resource-by">Jurafsky & Martin — Free at web.stanford.edu/~jurafsky/slp3</div>
+                <div class="resource-note">The NLP bible. Every topic from tokenization to transformers to LLMs. Updated continuously. Essential companion to CS224n.</div>
+                <span class="resource-must">Phase 3</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 LLMs</div>
+                <div class="resource-title">Build a Large Language Model (from Scratch)</div>
+                <div class="resource-by">Sebastian Raschka — Manning 2024</div>
+                <div class="resource-note">Implement GPT-2 from scratch, code the training loop, fine-tune. The most hands-on LLM book yet written.</div>
+                <span class="resource-must">Phase 5</span>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Understanding</div>
+                <div class="resource-title">Understanding Deep Learning</div>
+                <div class="resource-by">Simon Prince — MIT Press 2023 (free PDF)</div>
+                <div class="resource-note">The newest comprehensive textbook. Excellent diagrams and covers recent topics like diffusion models, transformers, reinforcement learning for LLMs.</div>
+                <span class="resource-must">Phase 2–5</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="resource-section">
+        <h4>Tier 2 — Deep Reference Works</h4>
+        <div class="resource-grid">
+            <div class="resource-card">
+                <div class="resource-type">📚 Statistics</div>
+                <div class="resource-title">Elements of Statistical Learning</div>
+                <div class="resource-by">Hastie, Tibshirani, Friedman — Free PDF at ESL website</div>
+                <div class="resource-note">The statistical learning classic. Deeper than Bishop on regularization and classical methods. Read chapters 2, 3, 4, 7, 10 thoroughly.</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Probability</div>
+                <div class="resource-title">Probabilistic Machine Learning (Vol 1 & 2)</div>
+                <div class="resource-by">Kevin Murphy — MIT Press (free draft PDFs online)</div>
+                <div class="resource-note">The modern probabilistic ML encyclopedia. More current than Bishop. Vol 2 covers deep learning, LVMs, diffusion, transformers at PhD level.</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Optimization</div>
+                <div class="resource-title">Convex Optimization</div>
+                <div class="resource-by">Boyd & Vandenberghe — Free at stanford.edu/~boyd/cvxbook</div>
+                <div class="resource-note">The optimization bible. For research-level understanding of loss landscapes, duality, KKT conditions, and why gradient descent works.</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Linear Algebra</div>
+                <div class="resource-title">Linear Algebra Done Right</div>
+                <div class="resource-by">Sheldon Axler — Springer</div>
+                <div class="resource-note">Proof-based linear algebra without determinants. The cleanest development of spectral theorem, SVD, Jordan form. For deep mathematical rigor.</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Transformers</div>
+                <div class="resource-title">Natural Language Processing with Transformers</div>
+                <div class="resource-by">Tunstall, von Werra, Wolf — O'Reilly 2022</div>
+                <div class="resource-note">Practical guide to the HuggingFace ecosystem. Fine-tuning BERT, GPT, T5. Text classification, QA, summarization, generation — all with code.</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-type">📚 Reinforcement Learning</div>
+                <div class="resource-title">Reinforcement Learning: An Introduction</div>
+                <div class="resource-by">Sutton & Barto — Free PDF at incompleteideas.net</div>
+                <div class="resource-note">The RL bible. Read to understand PPO, RLHF, and reward modeling. Chapters 1–7 (tabular methods) and ch 13 (policy gradients) are essential for RLHF.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ PAPERS -->
+    <section id="papers" class="section-header">
+        <span class="section-tag">§ 9 — The Canon</span>
+        <h2>Must-Read Research Papers</h2>
+        <p>These papers collectively define the field. Do not just read them. Implement them. Explain them. Debate them.</p>
+    </section>
+
+    <h3 class="sub">Foundational Papers</h3>
+    <div class="paper-list">
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Attention Is All You Need</div>
+                <div class="paper-meta">Vaswani et al., 2017 · Google Brain</div>
+                <div class="paper-why">The Transformer paper. Every modern LLM is a direct descendant. Read, implement, memorize.</div>
+            </div>
+            <span class="paper-tag tag-essential">Essential</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">BERT: Pre-training of Deep Bidirectional Transformers</div>
+                <div class="paper-meta">Devlin et al., 2018 · Google AI</div>
+                <div class="paper-why">Bidirectional pre-training with MLM. Defined the "pre-train then fine-tune" era. Used in virtually every NLU system.</div>
+            </div>
+            <span class="paper-tag tag-essential">Essential</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Language Models are Few-Shot Learners (GPT-3)</div>
+                <div class="paper-meta">Brown et al., 2020 · OpenAI</div>
+                <div class="paper-why">Showed emergent few-shot learning at scale. The paper that convinced the world scale matters. Study the in-context learning analysis.</div>
+            </div>
+            <span class="paper-tag tag-essential">Essential</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Scaling Laws for Neural Language Models</div>
+                <div class="paper-meta">Kaplan et al., 2020 · OpenAI</div>
+                <div class="paper-why">Power-law scaling relationships between compute, data, parameters, and loss. The foundation for planning LLM training runs.</div>
+            </div>
+            <span class="paper-tag tag-essential">Essential</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Training Compute-Optimal LLMs (Chinchilla)</div>
+                <div class="paper-meta">Hoffmann et al., 2022 · DeepMind</div>
+                <div class="paper-why">Revised Kaplan's scaling laws. Parameters and data should scale equally. Changed how every LLM after it was trained.</div>
+            </div>
+            <span class="paper-tag tag-essential">Essential</span>
+        </div>
+    </div>
+
+    <h3 class="sub">Alignment & Fine-Tuning</h3>
+    <div class="paper-list">
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Training Language Models to Follow Instructions (InstructGPT)</div>
+                <div class="paper-meta">Ouyang et al., 2022 · OpenAI</div>
+                <div class="paper-why">The RLHF paper. Understand SFT → Reward Model → PPO pipeline that powers ChatGPT.</div>
+            </div>
+            <span class="paper-tag tag-essential">Essential</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Direct Preference Optimization (DPO)</div>
+                <div class="paper-meta">Rafailov et al., 2023 · Stanford</div>
+                <div class="paper-why">Simpler RLHF replacement. Derive the closed-form optimal policy — the math is beautiful and the result is practically impactful.</div>
+            </div>
+            <span class="paper-tag tag-important">Important</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">LoRA: Low-Rank Adaptation of Large Language Models</div>
+                <div class="paper-meta">Hu et al., 2021 · Microsoft</div>
+                <div class="paper-why">The most widely used fine-tuning method. Understand the rank decomposition argument and why it works.</div>
+            </div>
+            <span class="paper-tag tag-important">Important</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Constitutional AI (Claude)</div>
+                <div class="paper-meta">Bai et al., 2022 · Anthropic</div>
+                <div class="paper-why">Alignment using AI feedback instead of human labelers at scale. The architecture behind Claude models.</div>
+            </div>
+            <span class="paper-tag tag-important">Important</span>
+        </div>
+    </div>
+
+    <h3 class="sub">Architecture Innovations</h3>
+    <div class="paper-list">
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">LLaMA: Open and Efficient Foundation Language Models</div>
+                <div class="paper-meta">Touvron et al., 2023 · Meta AI</div>
+                <div class="paper-why">Open-source competitive LLMs. Study RoPE, SwiGLU, RMSNorm choices and why they outperform the original Transformer.</div>
+            </div>
+            <span class="paper-tag tag-essential">Essential</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">FlashAttention-2</div>
+                <div class="paper-meta">Dao, 2023 · Stanford</div>
+                <div class="paper-why">IO-aware attention algorithm. Enables training long-context models. Used in every serious LLM training stack today.</div>
+            </div>
+            <span class="paper-tag tag-important">Important</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Mamba: Linear-Time Sequence Modeling with Selective State Spaces</div>
+                <div class="paper-meta">Gu & Dao, 2023</div>
+                <div class="paper-why">SSM-based alternative to Transformers. Linear-time in sequence length. May be the next architecture era.</div>
+            </div>
+            <span class="paper-tag tag-advanced">Advanced</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Mixtral of Experts</div>
+                <div class="paper-meta">Mistral AI, 2024</div>
+                <div class="paper-why">Sparse Mixture of Experts at production scale. Understand how router networks select expert FFN layers.</div>
+            </div>
+            <span class="paper-tag tag-important">Important</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL</div>
+                <div class="paper-meta">DeepSeek AI, 2025</div>
+                <div class="paper-why">GRPO-based training for chain-of-thought reasoning without supervised data. Matched o1 reasoning at fraction of cost. Active frontier paper.</div>
+            </div>
+            <span class="paper-tag tag-advanced">2025 Frontier</span>
+        </div>
+    </div>
+
+    <h3 class="sub">Retrieval & Agents</h3>
+    <div class="paper-list">
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Retrieval-Augmented Generation for Knowledge-Intensive NLP</div>
+                <div class="paper-meta">Lewis et al., 2020 · Facebook AI</div>
+                <div class="paper-why">The RAG paper. Architecture for combining parametric (LLM) and non-parametric (retriever) knowledge.</div>
+            </div>
+            <span class="paper-tag tag-important">Important</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">ReAct: Synergizing Reasoning and Acting in Language Models</div>
+                <div class="paper-meta">Yao et al., 2022 · Princeton/Google</div>
+                <div class="paper-why">Foundation of LLM agents. Interleaved reasoning and action traces. The basis of most agent frameworks today.</div>
+            </div>
+            <span class="paper-tag tag-important">Important</span>
+        </div>
+        <div class="paper-item">
+            <div>
+                <div class="paper-title">Chain-of-Thought Prompting Elicits Reasoning in LLMs</div>
+                <div class="paper-meta">Wei et al., 2022 · Google</div>
+                <div class="paper-why">Show that "let's think step by step" dramatically improves reasoning. One of the most cited LLM papers of recent years.</div>
+            </div>
+            <span class="paper-tag tag-essential">Essential</span>
+        </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ PROJECTS -->
+    <section id="projects" class="section-header">
+        <span class="section-tag">§ 10 — Hands On</span>
+        <h2>Project Roadmap</h2>
+        <p>Reading without building is philosophy. You must get your hands dirty. Here is the sequence of projects that solidify each phase.</p>
+    </section>
+
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-time">Month 3–4</div>
+            <div class="tl-body">
+                <h4>NumPy Neural Network from Scratch</h4>
+                <p>Implement forward pass, backpropagation, and training loop using ONLY NumPy. Train on MNIST. No PyTorch. No TensorFlow. This is non-negotiable. You will debug your understanding of the chain rule in the process.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 5–6</div>
+            <div class="tl-body">
+                <h4>Micrograd & MLP on PyTorch</h4>
+                <p>Reproduce Karpathy's micrograd autograd engine. Then rebuild as a full MLP in PyTorch. Implement and compare SGD, Adam, RMSProp. Understand what .backward() actually does in the computation graph.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 7–8</div>
+            <div class="tl-body">
+                <h4>Word2Vec from Scratch</h4>
+                <p>Implement skip-gram with negative sampling in pure PyTorch. Train on a Wikipedia dump. Visualize your embeddings with t-SNE. Verify king - man + woman ≈ queen in your embedding space.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 9–11</div>
+            <div class="tl-body">
+                <h4>GPT from Scratch (nanoGPT-style)</h4>
+                <p>Build a character-level or BPE-tokenized GPT. Implement multi-head attention, positional encoding, layer norm, residual connections from scratch. Train on Shakespeare. Then train a tiny version on your own text corpus.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 12–13</div>
+            <div class="tl-body">
+                <h4>Fine-tune LLaMA with LoRA</h4>
+                <p>Use HuggingFace + PEFT library to fine-tune a 7B or 13B LLaMA model on a custom dataset using LoRA. Understand adapter placement, rank choices. Evaluate with perplexity and human evaluation.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 14–15</div>
+            <div class="tl-body">
+                <h4>Build a RAG Pipeline from Scratch</h4>
+                <p>Implement document chunking, embedding with a sentence transformer, vector search with Faiss, retrieval, and generation with an open LLM. No LangChain shortcuts — build every component yourself first.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 16–18</div>
+            <div class="tl-body">
+                <h4>Reproduce a Paper</h4>
+                <p>Pick a 2022–2024 paper from an area you care about. Reproduce their main results without looking at their code. Write a blog post documenting your findings. Submit to arXiv. This is your entry into research.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 18+</div>
+            <div class="tl-body">
+                <h4>Original Research Contribution</h4>
+                <p>Identify a gap from your paper reading. Formulate a hypothesis. Run experiments. Write it up in NeurIPS/ACL/ICLR paper format. Submit even if rejected — the review feedback is invaluable mentorship.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ TOOLS -->
+    <section class="section-header">
+        <span class="section-tag">§ 11 — Your Toolkit</span>
+        <h2>Software & Tools You Must Master</h2>
+    </section>
+
+    <div class="topic-grid">
+        <div class="topic-item">
+            <h4>Python (Deep)</h4>
+            <p>Decorators, generators, context managers, type hints, async/await. Beyond basics — become fluent in Python internals.</p>
+        </div>
+        <div class="topic-item">
+            <h4>NumPy & SciPy</h4>
+            <p>Vectorized operations, broadcasting rules, linalg module. Must be second nature — no Python loops over arrays.</p>
+        </div>
+        <div class="topic-item">
+            <h4>PyTorch</h4>
+            <p>Tensors, autograd, nn.Module, DataLoader, training loops, custom loss functions. The dominant research framework.</p>
+        </div>
+        <div class="topic-item">
+            <h4>HuggingFace</h4>
+            <p>Transformers, Datasets, PEFT, Accelerate, TRL libraries. The standard toolkit for LLM work in industry and research.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Git & GitHub</h4>
+            <p>Version control, branching, PRs. Your research code must be reproducible. Use commit messages that explain WHY.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Weights & Biases</h4>
+            <p>Experiment tracking, loss curves, hyperparameter sweeps. Log every experiment. Never lose a result again.</p>
+        </div>
+        <div class="topic-item">
+            <h4>Linux & Command Line</h4>
+            <p>SSH, tmux, screen, bash scripting. You will train on remote GPU servers. Being fluent in the terminal is not optional.</p>
+        </div>
+        <div class="topic-item">
+            <h4>arXiv & Semantic Scholar</h4>
+            <p>Read papers daily. Set up arXiv email alerts for cs.LG, cs.CL, cs.AI. Follow researchers on Twitter/X and Hugging Face.</p>
+        </div>
+        <div class="topic-item">
+            <h4>LaTeX</h4>
+            <p>Write your research in LaTeX from day one. Use Overleaf. Every serious paper in ML is written in LaTeX.</p>
+        </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <!-- ══════════════════════════════════════════════════════════ FINAL WORD -->
+    <section id="final" class="section-header">
+        <span class="section-tag">§ 12 — From Your Professor</span>
+        <h2>A Final Word on the Journey</h2>
+    </section>
+
+    <div class="callout">
+        <strong>The most important thing I can tell you</strong>
+        Talent in this field is not a fixed thing. The researchers at the top of AI did not start that way. What separates them is one thing: they did not stop when it got hard. And it will get very hard. Phase 0 will feel like you are learning a new language. Phase 2 will feel like staring at an equation that refuses to make sense. This is normal. This is the process. The confusion is not a sign that you cannot do it. It is a sign that you are learning.
+    </div>
+
+    <div class="two-col">
+        <div>
+            <h3 class="sub">Daily Habits of Researchers</h3>
+            <ul class="plain">
+                <li>Read 1 paper per day (skim many, deep-read weekly)</li>
+                <li>Write code every single day, even small experiments</li>
+                <li>Keep a research journal (observations, failures, ideas)</li>
+                <li>Join reading groups, ML communities (MLSys Slack, EleutherAI, HuggingFace)</li>
+                <li>Teach what you learn — blog posts, Twitter threads, talks</li>
+                <li>Follow active researchers on arXiv, X, LinkedIn</li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="sub">Conferences to Target</h3>
+            <ul class="plain">
+                <li><strong>NeurIPS</strong> — top ML venue, extremely competitive</li>
+                <li><strong>ICML</strong> — International Conference on Machine Learning</li>
+                <li><strong>ICLR</strong> — deep learning, representation learning</li>
+                <li><strong>ACL / EMNLP / NAACL</strong> — NLP conferences</li>
+                <li><strong>COLM</strong> — new conference dedicated to LLMs</li>
+                <li><strong>Workshops</strong> — easier to publish, great networking</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="callout danger">
+        <strong>The one rule above all others</strong>
+        Never skip understanding for speed. Every time you copy-paste code you do not understand, or use a library function whose internals are a mystery, you are building technical debt in your own brain. The greatest researchers I know can implement any of their tools from scratch on a whiteboard. That is your standard. It will take time. It is worth every hour.
+    </div>
+
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-time">Month 1–4</div>
+            <div class="tl-body">
+                <h4>Phase 0: Mathematical Foundations</h4>
+                <p>Linear algebra (MIT 18.06), calculus (3Blue1Brown + rigorous text), probability (CS109), optimization basics. Daily: 2–3 hours of math. Build Python tools to visualize concepts.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 5–7</div>
+            <div class="tl-body">
+                <h4>Phase 1: Classical ML + Phase 2: Deep Learning</h4>
+                <p>CS229 notes + Bishop (ML theory). CS231n + Goodfellow (deep learning). Build neural nets from scratch in NumPy. Implement backprop by hand.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 8–10</div>
+            <div class="tl-body">
+                <h4>Phase 3: NLP + Phase 4: Transformers</h4>
+                <p>Jurafsky & Martin + CS224n. Build Word2Vec. Read Attention Is All You Need repeatedly. Build GPT from scratch. This is the core phase — do not rush it.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 11–15</div>
+            <div class="tl-body">
+                <h4>Phase 5: LLM Systems</h4>
+                <p>Fine-tuning (LoRA, RLHF, DPO). RAG systems. Agents. Scaling laws. Read all the key papers. Build your own fine-tuned model. Ship a real project.</p>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-time">Month 16+</div>
+            <div class="tl-body">
+                <h4>Phase 6: Research Mastery (Ongoing Forever)</h4>
+                <p>Reproduce papers. Read arXiv daily. Join reading groups. Run original experiments. Write and submit papers. Attend conferences. Never stop.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ FOOTER -->
+<footer class="footer">
+    <p>AI/ML MASTERY ROADMAP · PROFESSOR'S EDITION · 2024–2026</p>
+    <p style="margin-top:8px;">Built for <span>curious minds</span> who refuse to stop at the surface.</p>
+    <p style="margin-top:16px; font-size:9px; letter-spacing:1px;">The field moves fast. The fundamentals never change.</p>
+</footer>
+
+</body>
+</html>
